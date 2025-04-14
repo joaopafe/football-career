@@ -1,0 +1,136 @@
+.home {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-title-section {
+  margin-top: 32px;
+  margin-left: 32px;
+  margin-left: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.page-icon {
+  max-width: 25px;
+  max-height: 40px;
+  width: auto;
+  height: auto;
+}
+
+.page-title {
+  margin-left: 16px;
+  font-family: sans-serif;
+  font-size: 48px;
+  font-weight: bold;
+  color: #374151;
+}
+
+.player-name {
+  display: flex;
+  margin-top: 40px;
+  margin-left: 32px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.player-name-input {
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  height: 48px;
+  width: 288px;
+  padding: 16px;
+  margin-left: 57px;
+  font-size: 14px;
+}
+
+.player-position-input {
+  display: flex;
+  align-items: center;
+  margin-top: 24px;
+  margin-left: 32px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.position-select {
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  height: 48px;
+  width: 288px;
+  padding: 16px;
+  margin-left: 32px;
+  font-size: 14px;
+}
+
+.generate-first-season {
+  display: flex;
+  align-items: center;
+  margin-top: 80px;
+  margin-left: 32px;
+  justify-content: center;
+  gap: 40px;
+}
+
+.generate-first-season button {
+  width: 240px;
+  height: 64px;
+  border-radius: 30px;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.initial-overall-section button {
+  background-color: #2dd4bf;
+}
+
+.first-contract-section button {
+  background-color: #4338ca;
+}
+
+.initial-overall,
+.first-contract {
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  margin-top: 16px;
+  width: 240px;
+  height: 96px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-weight: bold;
+}
+
+.initial-overall {
+  font-size: 48px;
+}
+
+.first-contract {
+  font-size: 32px;
+}
+
+.start-first-season-section {
+  display: flex;
+  justify-content: center;
+}
+
+.start-first-season-button {
+  border-radius: 10px;
+  background-color: #374151;
+  color: white;
+  margin-top: 80px;
+  width: 320px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.start-first-season-button:disabled {
+  background-color: gray;
+}

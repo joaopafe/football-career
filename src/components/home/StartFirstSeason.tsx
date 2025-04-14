@@ -74,12 +74,14 @@ export const StartFirstSeason: FunctionComponent<StartFirstSeason> = ({
   }, []);
 
   return (
-    <button
-      disabled={buttonIsDisabled}
-      onClick={generatePlayer}
-      className="start-first-season-button"
-    >
-      Iniciar a primeira temporada
-    </button>
+    <div className="start-first-season-section">
+      <button
+        disabled={buttonIsDisabled}
+        onClick={generatePlayer}
+        className="start-first-season-button"
+      >
+        Iniciar a primeira temporada
+      </button>
+    </div>
   );
 };

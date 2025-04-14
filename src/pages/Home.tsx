@@ -9,7 +9,7 @@ import { Player } from "../../gameLogics/Player";
 
 import { nationalLeagues } from "../../data/nationalLeagues/nationalLeagues";
 
-import "../style/App.css";
+import "../style/Home.css";
 import "../style/reset.css";
 
 const player = new Player();
@@ -101,7 +101,12 @@ export const Home = () => {
   };
 
   return (
-    <>
+    <div className="home">
+      <div className="page-title-section">
+        <img className="page-icon" src="../public/player-icon.png" alt="" />
+        <div className="page-title">Criação do jogador</div>
+      </div>
+
       <RegistrationData />
 
       <div className="generate-first-season">
@@ -117,6 +122,6 @@ export const Home = () => {
       </div>
 
       <StartFirstSeason generatePlayer={generatePlayer} />
-    </>
+    </div>
   );
 };

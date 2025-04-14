@@ -1,4 +1,4 @@
-body {
-  height: 100vh;
-  border: 1px solid blue;
+@font-face {
+  font-family: "DM-Sans";
+  src: url("../../public/fonts/DMSans.ttf");
 }

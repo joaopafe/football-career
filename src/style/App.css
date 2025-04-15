@@ -2,3 +2,7 @@
   font-family: "DM-Sans";
   src: url("../../public/fonts/DMSans.ttf");
 }
+
+* {
+  font-family: "DM-Sans";
+}

@@ -5,7 +5,10 @@ import { InitialOVerall } from "../components/home/InitialOverall";
 import { FirstContract } from "../components/home/FirstContract";
 import { StartFirstSeason } from "../components/home/StartFirstSeason";
 
+import { getRandomNumber } from "../../utils/getRandomNumber";
+
 import { Player } from "../../gameLogics/Player";
+import { Championship } from "../../gameLogics/Championship";
 
 import { nationalLeagues } from "../../data/nationalLeagues/nationalLeagues";
 
@@ -13,12 +16,15 @@ import "../style/Home.css";
 import "../style/reset.css";
 
 const player = new Player();
+const championship = new Championship();
 
 export const Home = () => {
   const [playerData, setPlayerData] = useState({
     name: "",
     age: 17,
     team: "",
+    teamMinOverall: 0,
+    teamMaxOverall: 0,
     position: "",
     overall: 0,
     careerMatches: 0,
@@ -32,8 +38,31 @@ export const Home = () => {
     lastSeasonGrade: 0,
   });
 
+  const [championshipData, setChampionshipData] = useState({
+    playerTeam: {
+      teamName: "",
+      teamOverall: 0,
+      maxOverall: 0,
+      minOverall: 0,
+      maxScore: 0,
+      minScore: 0,
+    },
+    seasonMatches: [
+      {
+        opposingTeamName: "",
+        opposingTeamOverall: 0,
+        playerTeamName: "",
+        playerTeamOverall: 0,
+      },
+    ],
+  });
+
   useEffect(() => {
     localStorage.setItem("playerData", JSON.stringify(playerData));
+  });
+
+  useEffect(() => {
+    localStorage.setItem("championshipData", JSON.stringify(championshipData));
   });
 
   const getInitialOverall = (age: number, additionPerGrade: number): number => {
@@ -81,6 +110,48 @@ export const Home = () => {
     }
   };
 
+  const getTeamsOverall = () => {
+    return championship.getTeamsOverall(nationalLeagues[0].teams);
+  };
+
+  const getPlayerTeamInformations = () => {
+    const playerTeamOverall = championship.getPlayerTeamOverall(
+      nationalLeagues[0].teams,
+      playerData.team
+    );
+
+    setChampionshipData((championshipData) => ({
+      ...championshipData,
+      playerTeam: {
+        teamName: playerTeamOverall[0].teamName,
+        teamOverall: playerTeamOverall[0].teamOverall,
+        maxOverall: playerTeamOverall[0].maxOverall,
+        minOverall: playerTeamOverall[0].minOverall,
+        maxScore: playerTeamOverall[0].maxScore,
+        minScore: playerTeamOverall[0].minScore,
+      },
+    }));
+  };
+
+  const getSeasonMatches = () => {
+    const teamsOverall = getTeamsOverall();
+    const playerTeamOverall = championshipData.playerTeam;
+
+    const seasonMatches = championship.getSeasonMatches(
+      teamsOverall,
+      playerData.team,
+      getRandomNumber(
+        playerTeamOverall.maxOverall,
+        playerTeamOverall.minOverall
+      )
+    );
+
+    setChampionshipData((championshipData) => ({
+      ...championshipData,
+      seasonMatches: seasonMatches,
+    }));
+  };
+
   const generatePlayer = () => {
     const nameInput: HTMLInputElement | null =
       document.querySelector(".player-name-input");
@@ -97,6 +168,9 @@ export const Home = () => {
         name: playerName,
         position: playerPosition,
       }));
+
+      getPlayerTeamInformations();
+      getSeasonMatches();
     }
   };
 

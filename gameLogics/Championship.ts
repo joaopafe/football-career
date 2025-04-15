@@ -8,6 +8,14 @@ import {
 } from "../interfaces/championshipInterfaces";
 
 export class Championship {
+  getPlayerTeamOverall(teamsList: ITeam[], playerTeamName: string): ITeam[] {
+    const playerTeam = teamsList.filter((team) => {
+      return team.teamName === playerTeamName;
+    });
+
+    return playerTeam;
+  }
+
   getTeamsOverall(teamsList: ITeam[]): ITeamsOverall[] {
     const teamsOverall = teamsList.map((team) => {
       return {

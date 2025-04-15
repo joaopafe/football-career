@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { RegistrationData } from "../components/home/RegistrationData";
 import { InitialOVerall } from "../components/home/InitialOverall";
@@ -19,6 +20,8 @@ const player = new Player();
 const championship = new Championship();
 
 export const Home = () => {
+  const navigate = useNavigate();
+
   const [playerData, setPlayerData] = useState({
     name: "",
     age: 17,
@@ -152,6 +155,10 @@ export const Home = () => {
     }));
   };
 
+  const redirectToGame = () => {
+    navigate("/game");
+  };
+
   const generatePlayer = () => {
     const nameInput: HTMLInputElement | null =
       document.querySelector(".player-name-input");
@@ -171,6 +178,8 @@ export const Home = () => {
 
       getPlayerTeamInformations();
       getSeasonMatches();
+
+      redirectToGame();
     }
   };
 

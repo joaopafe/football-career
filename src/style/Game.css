@@ -1,0 +1,198 @@
+.game {
+  display: flex;
+  flex-direction: column;
+}
+
+.player-information-section {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.player-information {
+  justify-content: space-around;
+  display: flex;
+}
+
+.season-information {
+  justify-content: space-around;
+  display: flex;
+}
+
+.player-information {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.season-information {
+  font-size: 32px;
+  font-weight: bold;
+  color: #374151;
+}
+
+.player-stats {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.player-stats button {
+  border-radius: 30px;
+  height: 64px;
+  width: 280px;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+}
+
+.season-opportunities {
+  margin-top: 32px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.opportunity {
+  border: 1px solid #c3c3c3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  width: 280px;
+  height: 160px;
+}
+
+.opportunity-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #374151;
+}
+
+.opportunities-quantity {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.championship-informations {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.championship-information {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+}
+
+.field-title {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.field-value {
+  font-size: 32px;
+  color: #374151;
+  font-weight: bold;
+}
+
+.match-attempts-section {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  font-size: 32px;
+}
+
+.match-attempt {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.attempt-name {
+  color: #374151;
+  font-weight: bold;
+}
+
+.attempt-quantity {
+  border: 1px solid #c3c3c3;
+  border-radius: 8px;
+  height: 40px;
+  width: 80px;
+  font-size: 24px;
+}
+
+.match-section {
+  margin-top: 32px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.player-team {
+  display: flex;
+  gap: 32px;
+}
+
+.player-team-name {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.opposing-team {
+  display: flex;
+  gap: 32px;
+}
+
+.opposing-team-name {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.team-goals {
+  border-radius: 8px;
+  border: 1px solid #3d3d3d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  width: 56px;
+}
+
+.versus-icon {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.match-buttons-section {
+  margin-top: 32px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.match-buttons-section button {
+  border-radius: 30px;
+  width: 192px;
+  height: 64px;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 90%;
+}
+
+button:active {
+  opacity: 100%;
+}

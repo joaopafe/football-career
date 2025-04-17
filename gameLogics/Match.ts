@@ -112,7 +112,7 @@ export class Match {
     if (matchGrade > 10) matchGrade = 10;
     if (matchGrade < 0) matchGrade = 0;
 
-    return matchGrade;
+    return parseFloat(matchGrade.toFixed(2));
   };
 
   getSuccessfulProbability = (
@@ -200,15 +200,15 @@ export class Match {
     );
 
     return {
-      successfulDisarms: successfulDisarms,
-      successfulPass: successfulPass,
-      successfulFinishing: successfulFinishing,
-      successfulAssists: successfulAssists,
-      successfulGoals: successfulGoals,
-      unsuccessfulDisarms: unsuccessfulDisarms,
-      unsuccessfulPass: unsuccessfulPass,
-      unsuccessfulFinishing: unsuccessfulFinishing,
-      matchGrade: matchGrade,
+      successfulDisarms,
+      successfulPass,
+      successfulFinishing,
+      successfulAssists,
+      successfulGoals,
+      unsuccessfulDisarms,
+      unsuccessfulPass,
+      unsuccessfulFinishing,
+      matchGrade,
     };
   };
 }

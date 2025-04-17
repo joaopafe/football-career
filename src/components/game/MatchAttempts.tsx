@@ -10,9 +10,14 @@ export const MatchAttempts: FunctionComponent<MatchAttemptsProps> = ({
   idName,
 }) => {
   return (
-    <div id={idName} className="match-attempt">
+    <div className="match-attempt">
       <div className="attempt-name">{attemptName}</div>
-      <input className="attempt-quantity" type="number" />
+      <input
+        defaultValue={0}
+        id={idName}
+        className="attempt-quantity"
+        type="number"
+      />
     </div>
   );
 };

@@ -39,9 +39,11 @@ export const Home = () => {
     careerGrade: 0,
     seasonGrade: 0,
     lastSeasonGrade: 0,
+    gradesOnSeason: [],
   });
 
   const [championshipData, setChampionshipData] = useState({
+    championshipName: nationalLeagues[0].championshipName,
     playerTeam: {
       teamName: "",
       teamOverall: 0,
@@ -49,6 +51,7 @@ export const Home = () => {
       minOverall: 0,
       maxScore: 0,
       minScore: 0,
+      score: 0,
     },
     seasonMatches: [
       {
@@ -97,6 +100,19 @@ export const Home = () => {
         team: firstContract.teamName,
       }));
 
+      setChampionshipData((championshipData) => ({
+        ...championshipData,
+        playerTeam: {
+          teamName: firstContract.teamName,
+          maxOverall: firstContract.maxOverall,
+          minOverall: firstContract.minOverall,
+          teamOverall: firstContract.teamOverall,
+          maxScore: firstContract.maxScore,
+          minScore: firstContract.minScore,
+          score: 0,
+        },
+      }));
+
       return firstContract;
     }
 
@@ -132,6 +148,7 @@ export const Home = () => {
         minOverall: playerTeamOverall[0].minOverall,
         maxScore: playerTeamOverall[0].maxScore,
         minScore: playerTeamOverall[0].minScore,
+        score: 0,
       },
     }));
   };

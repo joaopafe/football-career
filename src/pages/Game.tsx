@@ -85,6 +85,11 @@ export const Game = () => {
 
   useEffect(() => {
     getPlayerSeasonOpportunities();
+
+    const savedSeason = localStorage.getItem("season");
+    const season = savedSeason === null ? 0 : parseInt(savedSeason);
+
+    setSeason(season);
   }, []);
 
   useEffect(() => {

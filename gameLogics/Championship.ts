@@ -72,7 +72,7 @@ export class Championship {
     const teamsScore = opposingTeams.map((team) => {
       return {
         teamName: team.teamName,
-        teamScore: getRandomNumber(team.maxOverall, team.minOverall),
+        teamScore: getRandomNumber(team.maxScore, team.minScore),
       };
     });
 

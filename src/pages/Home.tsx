@@ -63,12 +63,18 @@ export const Home = () => {
     ],
   });
 
+  const [season, setSeason] = useState(0);
+
   useEffect(() => {
     localStorage.setItem("playerData", JSON.stringify(playerData));
   });
 
   useEffect(() => {
     localStorage.setItem("championshipData", JSON.stringify(championshipData));
+  });
+
+  useEffect(() => {
+    localStorage.setItem("season", season.toString());
   });
 
   const getInitialOverall = (age: number, additionPerGrade: number): number => {
@@ -193,6 +199,7 @@ export const Home = () => {
         position: playerPosition,
       }));
 
+      setSeason(1);
       getPlayerTeamInformations();
       getSeasonMatches();
 

@@ -7,6 +7,7 @@ interface InformationsModalProps {
   assistsScored: number;
   matchesPlayed: number;
   avarageGrade?: number;
+  teamScore?: number;
   statsModal: "season" | "career";
   closeStats: (statsModal: "season" | "career") => void;
 }
@@ -18,6 +19,7 @@ export const InformationsModal: FunctionComponent<InformationsModalProps> = ({
   assistsScored,
   matchesPlayed,
   avarageGrade,
+  teamScore,
   statsModal,
   closeStats,
 }) => {
@@ -38,7 +40,11 @@ export const InformationsModal: FunctionComponent<InformationsModalProps> = ({
           </div>
 
           {avarageGrade === undefined ? null : (
-            <div className="avarageGrade">Nota média: {avarageGrade}</div>
+            <div className="avarage-grade">Nota média: {avarageGrade}</div>
+          )}
+
+          {teamScore === undefined ? null : (
+            <div className="team-score">Pontuação do time: {teamScore}</div>
           )}
 
           <div className="confirmation">

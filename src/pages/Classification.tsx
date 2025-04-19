@@ -79,13 +79,37 @@ export const Classification = () => {
       );
     });
 
-    setLeagueScore(
-      championship.getLeagueScore(
-        nationalLeague[0].teams,
-        championshipData.playerTeam.teamName,
-        championshipData.playerTeam.score
-      )
+    const newLeagueScore = championship.getLeagueScore(
+      nationalLeague[0].teams,
+      championshipData.playerTeam.teamName,
+      championshipData.playerTeam.score
     );
+
+    setLeagueScore(newLeagueScore);
+
+    const playerIndex = newLeagueScore.findIndex(
+      (team) => team.teamName === championshipData.playerTeam.teamName
+    );
+
+    const playerTeamPlacing = {
+      team: newLeagueScore[playerIndex],
+      placing: playerIndex + 1,
+    };
+
+    localStorage.setItem(
+      "placementLastSeason",
+      playerTeamPlacing.placing.toString()
+    );
+
+    if (playerTeamPlacing.placing === 1) {
+      window.alert("Parabéns! Seu time foi campeão!");
+    }
+
+    if (playerTeamPlacing.placing > 1 && playerTeamPlacing.placing < 7) {
+      window.alert(
+        "Parabéns! Seu está classificado para jogar a copa continental da próxima temporada!"
+      );
+    }
   }, []);
 
   const openStats = (statsModal: "season" | "career") => {

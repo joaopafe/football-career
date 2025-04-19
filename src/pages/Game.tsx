@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { PlayerInformation } from "../components/game/PlayerInformations";
 import { SeasonInformation } from "../components/game/SeasonInformation";
@@ -25,6 +26,8 @@ export const Game = () => {
 
   const player = new Player();
   const match = new Match();
+
+  const navigate = useNavigate();
 
   const [playerData, setPlayerData] = useState<{
     name: string;
@@ -212,7 +215,7 @@ export const Game = () => {
   };
 
   const getGoalsOfTheMatch = () => {
-    const roundMatch = championshipData.seasonMatches[round];
+    const roundMatch = championshipData.seasonMatches[round - 1];
 
     const goalsOfTheMatch = match.getGoalsOfTheMatch(
       roundMatch.playerTeamOverall,
@@ -240,6 +243,9 @@ export const Game = () => {
       goalsOfTheMatch.playerTeamGoals +=
         playerPerformance.successfulGoals + playerPerformance.successfulAssists;
       goalsOfTheMatch.opposingTeamGoals -= goalsAvoided;
+
+      if (goalsOfTheMatch.opposingTeamGoals < 0)
+        goalsOfTheMatch.opposingTeamGoals = 0;
 
       if (goalsOfTheMatch.playerTeamGoals > goalsOfTheMatch.opposingTeamGoals)
         matchPontuation = 3;
@@ -281,11 +287,14 @@ export const Game = () => {
         seasonMatches: playerData.seasonMatches + 1,
         careerMatches: playerData.careerMatches + 1,
         gradesOnSeason: newGradesOnSeason,
-        seasonGrade:
-          newGradesOnSeason.reduce(
-            (accumulator, currentValue) => accumulator + currentValue,
-            0
-          ) / newGradesOnSeason.length,
+        seasonGrade: parseFloat(
+          (
+            newGradesOnSeason.reduce(
+              (accumulator, currentValue) => accumulator + currentValue,
+              0
+            ) / newGradesOnSeason.length
+          ).toFixed(2)
+        ),
       }));
 
       setMatchResult({
@@ -352,20 +361,31 @@ export const Game = () => {
   };
 
   const updateMatch = () => {
-    if (matchWasPlayed === true) {
-      setRound(round + 1);
+    if (round < 38) {
+      if (matchWasPlayed === true) {
+        setRound(round + 1);
 
-      setMatchResult({
-        playerTeamGoals: "",
-        opposingTeamGoals: "",
-      });
+        setMatchResult({
+          playerTeamGoals: "",
+          opposingTeamGoals: "",
+        });
 
-      setMatchWasPlayed(false);
+        setMatchWasPlayed(false);
+      }
+      if (matchWasPlayed === false) {
+        window.alert(
+          "A partida ainda não foi jogada. Clique em 'Confirmar partida' para prosseguir"
+        );
+      }
     }
-    if (matchWasPlayed === false) {
-      window.alert(
-        "A partida ainda não foi jogada. Clique em 'Confirmar partida' para prosseguir"
+
+    if (round === 38) {
+      localStorage.setItem(
+        "playerSeasonOpportunities",
+        JSON.stringify(playerSeasonOpportunities)
       );
+
+      navigate("/classification");
     }
   };
 
@@ -509,6 +529,7 @@ export const Game = () => {
         assistsScored={playerData.seasonAssists}
         matchesPlayed={playerData.seasonMatches}
         avarageGrade={playerData.seasonGrade}
+        teamScore={championshipData.playerTeam.score}
         statsModal="season"
         closeStats={closeStats}
       />

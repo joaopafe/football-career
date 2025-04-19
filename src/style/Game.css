@@ -208,7 +208,6 @@ button:active {
   transform: translate(-50%, -50%);
   background-color: white;
   width: 360px;
-  height: 280px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -231,7 +230,13 @@ button:active {
   gap: 8px;
 }
 
-.avarageGrade {
+.avarage-grade {
+  margin-left: 24px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.team-score {
   margin-left: 24px;
   font-size: 20px;
   font-weight: bold;
@@ -240,6 +245,7 @@ button:active {
 .confirmation {
   display: flex;
   justify-content: center;
+  margin-bottom: 24px;
 }
 
 .confirmation button {

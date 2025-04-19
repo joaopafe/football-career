@@ -1,0 +1,58 @@
+.classification-page-title {
+  margin-top: 24px;
+  margin-left: 24px;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.championship-information {
+  margin-top: 24px;
+  margin-left: 24px;
+}
+
+.classification-columns {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.classification-list {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.team-classification {
+  display: flex;
+  font-size: 24px;
+  color: #374151;
+  font-weight: bold;
+}
+
+.team-placing,
+.team-name,
+.team-final-score {
+  width: 33.3%;
+  display: flex;
+  justify-content: center;
+}
+
+.cup-button-section {
+  margin-top: 32px;
+  display: flex;
+  justify-content: center;
+}
+
+#go-to-national-cup {
+  margin-bottom: 32px;
+  border-radius: 30px;
+  height: 64px;
+  width: 240px;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}

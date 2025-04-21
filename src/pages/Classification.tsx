@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 import { Championship } from "../../gameLogics/Championship";
 
@@ -23,6 +24,8 @@ export const Classification = () => {
   if (championshipDataStorage === null) championshipDataStorage = "{}";
 
   const championship = new Championship();
+
+  const navigate = useNavigate();
 
   const [playerData, setPlayerData] = useState<{
     name: string;
@@ -144,6 +147,10 @@ export const Classification = () => {
     }
   };
 
+  const redirectToNationalCup = () => {
+    navigate("/national-cup");
+  };
+
   return (
     <div className="classification">
       <div className="classification-page-title">Classificação final</div>
@@ -186,9 +193,7 @@ export const Classification = () => {
           buttonValue="Jogar copa nacional"
           buttonColor="32A330"
           idName="go-to-national-cup"
-          matchAction={() => {
-            console.log("Ok");
-          }}
+          matchAction={redirectToNationalCup}
         />
       </div>
 

@@ -28,3 +28,17 @@ export interface ILeagueScore {
   teamName: string;
   teamScore: number;
 }
+
+export interface INationalCup {
+  relatedNationalLeague: string;
+  cupName: string;
+  phases: {
+    phaseName: string;
+    numberOfMatches: number;
+    possibleOpponents: {
+      teamName: string;
+      maxOverall: number;
+      minOverall: number;
+    }[];
+  }[];
+}

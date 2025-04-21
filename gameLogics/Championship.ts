@@ -5,6 +5,7 @@ import {
   ITeamsOverall,
   ISeasonMatches,
   ILeagueScore,
+  INationalCup,
 } from "../interfaces/championshipInterfaces";
 
 export class Championship {
@@ -84,5 +85,98 @@ export class Championship {
     return teamsScore.sort((a, b) => {
       return b.teamScore - a.teamScore;
     });
+  }
+
+  getNationalCup(playerTeamLeague: string, nationalCups: INationalCup[]) {
+    const nationalCup = nationalCups.filter((nationalCup) => {
+      return nationalCup.relatedNationalLeague === playerTeamLeague;
+    });
+
+    return nationalCup;
+  }
+
+  getNationalCupFiltered(nationalCup: INationalCup, playerTeamName: string) {
+    const nationalCupFiltered = {
+      ...nationalCup,
+      phases: nationalCup.phases.map((phase) => ({
+        ...phase,
+        possibleOpponents: phase.possibleOpponents.filter(
+          (team) => team.teamName !== playerTeamName
+        ),
+      })),
+    };
+
+    return nationalCupFiltered;
+  }
+
+  getNationalCupsMatches(
+    nationalCup: INationalCup,
+    playerTeam: { playerTeamName: string; playerTeamOverall: number }
+  ) {
+    const roundOf16Index = getRandomNumber(
+      nationalCup.phases[0].possibleOpponents.length - 1,
+      0
+    );
+    const quarterFinalsIndex = getRandomNumber(
+      nationalCup.phases[1].possibleOpponents.length - 1,
+      0
+    );
+    const semiFinalIndex = getRandomNumber(
+      nationalCup.phases[2].possibleOpponents.length - 1,
+      0
+    );
+    const finalIndex = getRandomNumber(
+      nationalCup.phases[3].possibleOpponents.length - 1,
+      0
+    );
+
+    const roundOf16 = nationalCup.phases[0].possibleOpponents[roundOf16Index];
+    const quarterFinals =
+      nationalCup.phases[1].possibleOpponents[quarterFinalsIndex];
+    const semiFinal = nationalCup.phases[2].possibleOpponents[semiFinalIndex];
+    const final = nationalCup.phases[3].possibleOpponents[finalIndex];
+
+    return {
+      roundOf16: {
+        phase: "Oitavas de final",
+        opposingTeamName: roundOf16.teamName,
+        opposingTeamOverall: getRandomNumber(
+          roundOf16.maxOverall,
+          roundOf16.minOverall
+        ),
+        playerTeamName: playerTeam.playerTeamName,
+        playerTeamOverall: playerTeam.playerTeamOverall,
+      },
+      quarterFinals: {
+        phase: "Quartas de final",
+        opposingTeamName: quarterFinals.teamName,
+        opposingTeamOverall: getRandomNumber(
+          quarterFinals.maxOverall,
+          quarterFinals.minOverall
+        ),
+        playerTeamName: playerTeam.playerTeamName,
+        playerTeamOverall: playerTeam.playerTeamOverall,
+      },
+      semiFinal: {
+        phase: "Semi final",
+        opposingTeamName: semiFinal.teamName,
+        opposingTeamOverall: getRandomNumber(
+          semiFinal.maxOverall,
+          semiFinal.minOverall
+        ),
+        playerTeamName: playerTeam.playerTeamName,
+        playerTeamOverall: playerTeam.playerTeamOverall,
+      },
+      final: {
+        phase: "Final",
+        opposingTeamName: final.teamName,
+        opposingTeamOverall: getRandomNumber(
+          final.maxOverall,
+          final.minOverall
+        ),
+        playerTeamName: playerTeam.playerTeamName,
+        playerTeamOverall: playerTeam.playerTeamOverall,
+      },
+    };
   }
 }

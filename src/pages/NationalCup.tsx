@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { nationalCups } from "../../data/nationalCups/nationalCups";
 
@@ -32,8 +33,13 @@ export const NationalCup = () => {
   let seasonStorage = localStorage.getItem("season");
   if (seasonStorage === null) championshipDataStorage = "1";
 
+  let placementLastSeasonStorage = localStorage.getItem("placementLastSeason");
+  if (placementLastSeasonStorage === null) placementLastSeasonStorage = "20";
+
   const championship = new Championship();
   const match = new Match();
+
+  const navigate = useNavigate();
 
   const [playerData, setPlayerData] = useState<{
     name: string;
@@ -133,6 +139,7 @@ export const NationalCup = () => {
     playerTeamGoals: 0,
     opposingTeamGoals: 0,
   });
+  const [placementLastSeason, setPlacementLastSeason] = useState(20);
 
   useEffect(() => {
     setPlayerSeasonOpportunities(JSON.parse(playerSeasonOpportunitiesStorage));
@@ -163,11 +170,16 @@ export const NationalCup = () => {
       setSeason(parseInt(seasonStorage));
     }
 
-    console.log(newNationalCupFiltered);
-    console.log(newNationalCupMatches);
-
     setCupMatch(newNationalCupMatches.roundOf16);
+
+    if (placementLastSeasonStorage != null) {
+      setPlacementLastSeason(parseInt(placementLastSeasonStorage));
+    }
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("season", season.toString());
+  }, [season]);
 
   const openStats = (statsModal: "season" | "career") => {
     if (statsModal === "season") {
@@ -285,7 +297,6 @@ export const NationalCup = () => {
     };
   };
 
-  // CONTINUAR DAQUI
   const getPlayerPerformance = () => {
     const playerAttempts = getPlayerAttempts();
 
@@ -400,6 +411,20 @@ export const NationalCup = () => {
     }
   };
 
+  const redirectScreen = () => {
+    if (season === 1) {
+      setSeason(season + 1);
+
+      navigate("/transfer");
+    }
+
+    if (season > 1) {
+      if (placementLastSeason <= 6) {
+        navigate("continental-cup");
+      }
+    }
+  };
+
   const updatePhase = () => {
     const playerTeamWon =
       roundGoals.playerTeamGoals > roundGoals.opposingTeamGoals;
@@ -445,6 +470,8 @@ export const NationalCup = () => {
           window.alert(
             `O seu time foi eliminado nas oitavas de final, perdendo por ${resultOfPenalties.opposingTeamGoals} a ${resultOfPenalties.playerTeamGoals} nos pênaltis`
           );
+
+          redirectScreen();
         }
       }
 
@@ -452,6 +479,8 @@ export const NationalCup = () => {
         window.alert(
           `O seu time foi eliminado nas oitavas de final, perdendo por ${roundGoals.opposingTeamGoals} a ${roundGoals.playerTeamGoals} no placar agregado`
         );
+
+        redirectScreen();
       }
     }
 
@@ -481,6 +510,8 @@ export const NationalCup = () => {
           window.alert(
             `O seu time foi eliminado nas quartas de final, perdendo por ${resultOfPenalties.opposingTeamGoals} a ${resultOfPenalties.playerTeamGoals} nos pênaltis`
           );
+
+          redirectScreen();
         }
       }
 
@@ -488,6 +519,8 @@ export const NationalCup = () => {
         window.alert(
           `O seu time foi eliminado nas quartas de final, perdendo por ${roundGoals.opposingTeamGoals} a ${roundGoals.playerTeamGoals} no placar agregado`
         );
+
+        redirectScreen();
       }
     }
 
@@ -517,6 +550,8 @@ export const NationalCup = () => {
           window.alert(
             `O seu time foi eliminado na semi final, perdendo por ${resultOfPenalties.opposingTeamGoals} a ${resultOfPenalties.playerTeamGoals} nos pênaltis`
           );
+
+          redirectScreen();
         }
       }
 
@@ -524,6 +559,48 @@ export const NationalCup = () => {
         window.alert(
           `O seu time foi eliminado na semi final, perdendo por ${roundGoals.opposingTeamGoals} a ${roundGoals.playerTeamGoals} no placar agregado`
         );
+
+        redirectScreen();
+      }
+    }
+
+    if (roundMatch === 9) {
+      if (playerTeamWon) {
+        window.alert(
+          `Parabéns, o seu time foi campeão da ${nationalCup.nationalCupName}, vencendo por ${roundGoals.playerTeamGoals} a ${roundGoals.opposingTeamGoals} no placar agregado`
+        );
+        redirectScreen();
+      }
+
+      if (playerTeamTied) {
+        if (
+          resultOfPenalties.playerTeamGoals >
+          resultOfPenalties.opposingTeamGoals
+        ) {
+          window.alert(
+            `Parabéns, o seu time foi campeão da ${nationalCup.nationalCupName}, vencendo por ${resultOfPenalties.playerTeamGoals} a ${resultOfPenalties.opposingTeamGoals} nos pênaltis`
+          );
+          redirectScreen();
+        }
+
+        if (
+          resultOfPenalties.playerTeamGoals <
+          resultOfPenalties.opposingTeamGoals
+        ) {
+          window.alert(
+            `O seu time perdeu o título da ${nationalCup.nationalCupName} na final, perdendo por ${resultOfPenalties.opposingTeamGoals} a ${resultOfPenalties.playerTeamGoals} nos pênaltis`
+          );
+
+          redirectScreen();
+        }
+      }
+
+      if (playerTeamLost) {
+        window.alert(
+          `O seu time perdeu o título da ${nationalCup.nationalCupName} na final, perdendo por ${resultOfPenalties.opposingTeamGoals} a ${resultOfPenalties.playerTeamGoals} no placar agregado`
+        );
+
+        redirectScreen();
       }
     }
   };

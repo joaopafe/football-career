@@ -108,6 +108,19 @@ export const Game = () => {
       playerData.position,
       player.getAdditionOverallPerGrade(playerData.lastSeasonGrade)
     );
+    const additionalOpportunities = player.getAdditionalOpportunities(
+      playerData.overall
+    );
+
+    opportunitiesPerSeason.disarmingOpportunities = Math.floor(
+      opportunitiesPerSeason.disarmingOpportunities * additionalOpportunities
+    );
+    opportunitiesPerSeason.passOpportunities = Math.floor(
+      opportunitiesPerSeason.passOpportunities * additionalOpportunities
+    );
+    opportunitiesPerSeason.finishingOpportunities = Math.floor(
+      opportunitiesPerSeason.finishingOpportunities * additionalOpportunities
+    );
 
     setPlayerSeasonOpportunities({
       disarmingOpportunities: opportunitiesPerSeason.disarmingOpportunities,

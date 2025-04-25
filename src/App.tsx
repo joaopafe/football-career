@@ -3,7 +3,7 @@ import { Home } from "./pages/Home";
 import { Game } from "./pages/Game";
 import { Classification } from "./pages/Classification";
 import { NationalCup } from "./pages/NationalCup";
-import { ContinentalCup } from "./pages/continentalCup";
+import { ContinentalCup } from "./pages/ContinentalCup";
 import { Transfer } from "./pages/Tranfer";
 
 import "./style/App.css";

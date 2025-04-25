@@ -178,6 +178,10 @@ export const NationalCup = () => {
   }, []);
 
   useEffect(() => {
+    localStorage.setItem("playerData", JSON.stringify(playerData));
+  }, [playerData]);
+
+  useEffect(() => {
     localStorage.setItem("season", season.toString());
   }, [season]);
 
@@ -403,8 +407,10 @@ export const NationalCup = () => {
       setMatchWasPlayed(true);
 
       setRoundGoals({
-        playerTeamGoals: goalsOfTheMatch.playerTeamGoals,
-        opposingTeamGoals: goalsOfTheMatch.opposingTeamGoals,
+        playerTeamGoals:
+          goalsOfTheMatch.playerTeamGoals + roundGoals.playerTeamGoals,
+        opposingTeamGoals:
+          goalsOfTheMatch.opposingTeamGoals + roundGoals.opposingTeamGoals,
       });
 
       setRoundMatch(roundMatch + 1);
@@ -420,9 +426,12 @@ export const NationalCup = () => {
 
     if (season > 1) {
       if (placementLastSeason <= 6) {
-        navigate("continental-cup");
+        navigate("/transfer");
+        // navigate("continental-cup");
       }
     }
+
+    navigate("/transfer");
   };
 
   const updatePhase = () => {
@@ -450,6 +459,8 @@ export const NationalCup = () => {
           `O seu time se classificou para as quartas de final, vencendo por ${roundGoals.playerTeamGoals} a ${roundGoals.opposingTeamGoals} no placar agregado`
         );
         setCupMatch(nationalCupMatches.quarterFinals);
+
+        setRoundGoals({ playerTeamGoals: 0, opposingTeamGoals: 0 });
       }
 
       if (playerTeamTied) {
@@ -461,6 +472,8 @@ export const NationalCup = () => {
             `O seu time se classificou para as quartas de final, vencendo por ${resultOfPenalties.playerTeamGoals} a ${resultOfPenalties.opposingTeamGoals} nos pênaltis`
           );
           setCupMatch(nationalCupMatches.quarterFinals);
+
+          setRoundGoals({ playerTeamGoals: 0, opposingTeamGoals: 0 });
         }
 
         if (
@@ -490,6 +503,8 @@ export const NationalCup = () => {
           `O seu time se classificou para a semi final, vencendo por ${roundGoals.playerTeamGoals} a ${roundGoals.opposingTeamGoals} no placar agregado`
         );
         setCupMatch(nationalCupMatches.semiFinal);
+
+        setRoundGoals({ playerTeamGoals: 0, opposingTeamGoals: 0 });
       }
 
       if (playerTeamTied) {
@@ -501,6 +516,8 @@ export const NationalCup = () => {
             `O seu time se classificou para semi final, vencendo por ${resultOfPenalties.playerTeamGoals} a ${resultOfPenalties.opposingTeamGoals} nos pênaltis`
           );
           setCupMatch(nationalCupMatches.semiFinal);
+
+          setRoundGoals({ playerTeamGoals: 0, opposingTeamGoals: 0 });
         }
 
         if (
@@ -530,6 +547,8 @@ export const NationalCup = () => {
           `O seu time se classificou para a final, vencendo por ${roundGoals.playerTeamGoals} a ${roundGoals.opposingTeamGoals} no placar agregado`
         );
         setCupMatch(nationalCupMatches.final);
+
+        setRoundGoals({ playerTeamGoals: 0, opposingTeamGoals: 0 });
       }
 
       if (playerTeamTied) {
@@ -541,6 +560,8 @@ export const NationalCup = () => {
             `O seu time se classificou para a final, vencendo por ${resultOfPenalties.playerTeamGoals} a ${resultOfPenalties.opposingTeamGoals} nos pênaltis`
           );
           setCupMatch(nationalCupMatches.final);
+
+          setRoundGoals({ playerTeamGoals: 0, opposingTeamGoals: 0 });
         }
 
         if (

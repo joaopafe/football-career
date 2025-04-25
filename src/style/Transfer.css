@@ -1,0 +1,74 @@
+.page-title {
+  margin-top: 32px;
+  margin-left: 32px;
+}
+
+.player-informations {
+  margin-top: 32px;
+  margin-left: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field-value {
+  font-size: 32px;
+  color: #000000;
+  font-weight: bold;
+}
+
+.field-name {
+  font-size: 32px;
+  color: #374151;
+  font-weight: bold;
+}
+
+.player-transfer-name {
+  margin-top: 0px;
+  margin-left: 0px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.player-transfer-age {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.player-overall {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.contracts-section {
+  margin-top: 32px;
+  margin-left: 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.transfer-message {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.contract-list {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.contract {
+  border-radius: 30px;
+  width: 280px;
+  height: 64px;
+  background-color: #374151;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}

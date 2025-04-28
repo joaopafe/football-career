@@ -6,6 +6,7 @@ import {
   ISeasonMatches,
   ILeagueScore,
   INationalCup,
+  IContinentalCup,
 } from "../interfaces/championshipInterfaces";
 
 export class Championship {
@@ -135,6 +136,174 @@ export class Championship {
       nationalCup.phases[1].possibleOpponents[quarterFinalsIndex];
     const semiFinal = nationalCup.phases[2].possibleOpponents[semiFinalIndex];
     const final = nationalCup.phases[3].possibleOpponents[finalIndex];
+
+    return {
+      roundOf16: {
+        phase: "Oitavas de final",
+        opposingTeamName: roundOf16.teamName,
+        opposingTeamOverall: getRandomNumber(
+          roundOf16.maxOverall,
+          roundOf16.minOverall
+        ),
+        playerTeamName: playerTeam.playerTeamName,
+        playerTeamOverall: playerTeam.playerTeamOverall,
+      },
+      quarterFinals: {
+        phase: "Quartas de final",
+        opposingTeamName: quarterFinals.teamName,
+        opposingTeamOverall: getRandomNumber(
+          quarterFinals.maxOverall,
+          quarterFinals.minOverall
+        ),
+        playerTeamName: playerTeam.playerTeamName,
+        playerTeamOverall: playerTeam.playerTeamOverall,
+      },
+      semiFinal: {
+        phase: "Semi final",
+        opposingTeamName: semiFinal.teamName,
+        opposingTeamOverall: getRandomNumber(
+          semiFinal.maxOverall,
+          semiFinal.minOverall
+        ),
+        playerTeamName: playerTeam.playerTeamName,
+        playerTeamOverall: playerTeam.playerTeamOverall,
+      },
+      final: {
+        phase: "Final",
+        opposingTeamName: final.teamName,
+        opposingTeamOverall: getRandomNumber(
+          final.maxOverall,
+          final.minOverall
+        ),
+        playerTeamName: playerTeam.playerTeamName,
+        playerTeamOverall: playerTeam.playerTeamOverall,
+      },
+    };
+  }
+
+  getContinentalCup(
+    playerTeamLeague: string,
+    continentalCups: IContinentalCup[]
+  ) {
+    const continentalCup = continentalCups.find((continentalCup) => {
+      return continentalCup.relatedNationalLeague.includes(playerTeamLeague);
+    });
+
+    return continentalCup;
+  }
+
+  getContinentalCupFiltered(
+    continentalCup: IContinentalCup,
+    playerTeamName: string
+  ) {
+    const continentalCupFiltered = {
+      ...continentalCup,
+      groupStage: {
+        ...continentalCup.groupStage,
+        possibleOpponents: continentalCup.groupStage.possibleOpponents.filter(
+          (team) => team.teamName !== playerTeamName
+        ),
+      },
+      phases: continentalCup.phases.map((phase) => ({
+        ...phase,
+        possibleOpponents: phase.possibleOpponents.filter(
+          (team) => team.teamName !== playerTeamName
+        ),
+      })),
+    };
+
+    return continentalCupFiltered;
+  }
+
+  getThreeGroupStageOpponents(continentalCup: IContinentalCup) {
+    const opponents = [...continentalCup.groupStage.possibleOpponents];
+    const selectedOpponents: typeof opponents = [];
+
+    while (selectedOpponents.length < 3 && opponents.length > 0) {
+      const randomIndex = getRandomNumber(opponents.length - 1, 0);
+      const opponent = opponents[randomIndex];
+
+      selectedOpponents.push(opponent);
+      opponents.splice(randomIndex, 1);
+    }
+
+    return selectedOpponents;
+  }
+
+  getGroupStageMatches(
+    threeGroupStageOpponents: {
+      teamName: string;
+      maxOverall: number;
+      minOverall: number;
+      maxScore: number;
+      minScore: number;
+    }[]
+  ) {
+    const matches = [];
+
+    for (let i = 0; i <= 5; i++) {
+      if (i === 1 || i === 2) {
+        matches.push({
+          teamName: threeGroupStageOpponents[0].teamName,
+          overall: getRandomNumber(
+            threeGroupStageOpponents[0].maxOverall,
+            threeGroupStageOpponents[0].minOverall
+          ),
+        });
+      }
+
+      if (i === 2 || i === 3) {
+        matches.push({
+          teamName: threeGroupStageOpponents[1].teamName,
+          overall: getRandomNumber(
+            threeGroupStageOpponents[1].maxOverall,
+            threeGroupStageOpponents[1].minOverall
+          ),
+        });
+      }
+
+      if (i === 4 || i === 5) {
+        matches.push({
+          teamName: threeGroupStageOpponents[2].teamName,
+          overall: getRandomNumber(
+            threeGroupStageOpponents[2].maxOverall,
+            threeGroupStageOpponents[2].minOverall
+          ),
+        });
+      }
+    }
+
+    return matches;
+  }
+
+  getContinentalCupMatches(
+    continentalCup: IContinentalCup,
+    playerTeam: { playerTeamName: string; playerTeamOverall: number }
+  ) {
+    const roundOf16Index = getRandomNumber(
+      continentalCup.phases[0].possibleOpponents.length - 1,
+      0
+    );
+    const quarterFinalsIndex = getRandomNumber(
+      continentalCup.phases[1].possibleOpponents.length - 1,
+      0
+    );
+    const semiFinalIndex = getRandomNumber(
+      continentalCup.phases[2].possibleOpponents.length - 1,
+      0
+    );
+    const finalIndex = getRandomNumber(
+      continentalCup.phases[3].possibleOpponents.length - 1,
+      0
+    );
+
+    const roundOf16 =
+      continentalCup.phases[0].possibleOpponents[roundOf16Index];
+    const quarterFinals =
+      continentalCup.phases[1].possibleOpponents[quarterFinalsIndex];
+    const semiFinal =
+      continentalCup.phases[2].possibleOpponents[semiFinalIndex];
+    const final = continentalCup.phases[3].possibleOpponents[finalIndex];
 
     return {
       roundOf16: {

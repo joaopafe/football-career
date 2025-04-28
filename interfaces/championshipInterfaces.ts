@@ -42,3 +42,27 @@ export interface INationalCup {
     }[];
   }[];
 }
+
+export interface IContinentalCup {
+  relatedNationalLeague: string[];
+  cupName: string;
+  groupStage: {
+    phaseName: string;
+    possibleOpponents: {
+      teamName: string;
+      maxOverall: number;
+      minOverall: number;
+      maxScore: number;
+      minScore: number;
+    }[];
+  };
+  phases: {
+    phaseName: string;
+    numberOfMatches: number;
+    possibleOpponents: {
+      teamName: string;
+      maxOverall: number;
+      minOverall: number;
+    }[];
+  }[];
+}

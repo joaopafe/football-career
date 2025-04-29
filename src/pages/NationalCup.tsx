@@ -418,20 +418,15 @@ export const NationalCup = () => {
   };
 
   const redirectScreen = () => {
-    if (season === 1) {
+    if (placementLastSeason <= 6) {
+      navigate("/continental-cup");
+    }
+
+    if (placementLastSeason >= 7) {
       setSeason(season + 1);
 
       navigate("/transfer");
     }
-
-    if (season > 1) {
-      if (placementLastSeason <= 6) {
-        navigate("/transfer");
-        // navigate("continental-cup");
-      }
-    }
-
-    navigate("/transfer");
   };
 
   const updatePhase = () => {

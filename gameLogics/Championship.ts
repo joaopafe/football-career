@@ -237,43 +237,51 @@ export class Championship {
       minOverall: number;
       maxScore: number;
       minScore: number;
-    }[]
+    }[],
+    playerTeamName: string,
+    playerTeamOverall: number
   ) {
-    const matches = [];
+    const groupStageMatches = [];
 
     for (let i = 0; i <= 5; i++) {
       if (i === 1 || i === 2) {
-        matches.push({
-          teamName: threeGroupStageOpponents[0].teamName,
-          overall: getRandomNumber(
+        groupStageMatches.push({
+          opposingTeamName: threeGroupStageOpponents[0].teamName,
+          opposingTeamOverall: getRandomNumber(
             threeGroupStageOpponents[0].maxOverall,
             threeGroupStageOpponents[0].minOverall
           ),
+          playerTeamName,
+          playerTeamOverall,
         });
       }
 
       if (i === 2 || i === 3) {
-        matches.push({
-          teamName: threeGroupStageOpponents[1].teamName,
-          overall: getRandomNumber(
+        groupStageMatches.push({
+          opposingTeamName: threeGroupStageOpponents[1].teamName,
+          opposingTeamOverall: getRandomNumber(
             threeGroupStageOpponents[1].maxOverall,
             threeGroupStageOpponents[1].minOverall
           ),
+          playerTeamName,
+          playerTeamOverall,
         });
       }
 
       if (i === 4 || i === 5) {
-        matches.push({
-          teamName: threeGroupStageOpponents[2].teamName,
-          overall: getRandomNumber(
+        groupStageMatches.push({
+          opposingTeamName: threeGroupStageOpponents[2].teamName,
+          opposingTeamOverall: getRandomNumber(
             threeGroupStageOpponents[2].maxOverall,
             threeGroupStageOpponents[2].minOverall
           ),
+          playerTeamName,
+          playerTeamOverall,
         });
       }
     }
 
-    return matches;
+    return groupStageMatches;
   }
 
   getContinentalCupMatches(

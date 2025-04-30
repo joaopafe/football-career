@@ -1,269 +1,1146 @@
-.game {
-  display: flex;
-  flex-direction: column;
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px or more
+*/
+@media (min-width: 1025px) {
+  .game {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .player-information-section {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .player-information {
+    justify-content: space-around;
+    display: flex;
+  }
+
+  .season-information {
+    justify-content: space-around;
+    display: flex;
+  }
+
+  .player-information {
+    font-size: 40px;
+    font-weight: bold;
+  }
+
+  .season-information {
+    font-size: 32px;
+    font-weight: bold;
+    color: #374151;
+  }
+
+  .player-stats {
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .player-stats button {
+    border-radius: 30px;
+    height: 64px;
+    width: 280px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+  }
+
+  .season-opportunities {
+    margin-top: 32px;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .opportunity {
+    border-radius: 8px;
+    border: 1px solid #c3c3c3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    width: 280px;
+    height: 160px;
+  }
+
+  .opportunity-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #374151;
+  }
+
+  .opportunities-quantity {
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+  .championship-informations {
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .championship-information {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .field-title {
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+  .field-value {
+    font-size: 32px;
+    color: #374151;
+    font-weight: bold;
+  }
+
+  .match-attempts-section {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    font-size: 32px;
+  }
+
+  .match-attempt {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .attempt-name {
+    color: #374151;
+    font-weight: bold;
+  }
+
+  .attempt-quantity {
+    border: 1px solid #c3c3c3;
+    border-radius: 8px;
+    height: 40px;
+    width: 80px;
+    padding-left: 16px;
+    font-size: 24px;
+  }
+
+  .match-section {
+    margin-top: 32px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .player-team {
+    display: flex;
+    gap: 32px;
+  }
+
+  .player-team-name {
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+  .opposing-team {
+    display: flex;
+    gap: 32px;
+  }
+
+  .opposing-team-name {
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+  .team-goals {
+    border-radius: 8px;
+    border: 1px solid #3d3d3d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    width: 56px;
+  }
+
+  .versus-icon {
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+  .match-buttons-section {
+    margin-top: 32px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .match-buttons-section button {
+    border-radius: 30px;
+    width: 192px;
+    height: 64px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  button:hover {
+    opacity: 90%;
+  }
+
+  button:active {
+    opacity: 100%;
+  }
+
+  .informations-modal {
+    border-radius: 8px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .modal-name {
+    margin-left: 24px;
+    margin-top: 24px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .modal-stats {
+    margin-left: 24px;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .avarage-grade {
+    margin-left: 24px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .team-score {
+    margin-left: 24px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .confirmation {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+
+  .confirmation button {
+    border-radius: 8px;
+    background-color: #f3f4f6;
+    width: 80px;
+    height: 48px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .modal-background {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
 }
 
-.player-information-section {
-  margin-top: 40px;
-  display: flex;
-  flex-direction: column;
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+@media (min-width: 768px) and (max-width: 1024px) {
+  .game {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .player-information-section {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .player-information {
+    justify-content: space-around;
+    display: flex;
+  }
+
+  .season-information {
+    justify-content: space-around;
+    display: flex;
+  }
+
+  .player-information {
+    font-size: 40px;
+    font-weight: bold;
+  }
+
+  .season-information {
+    font-size: 32px;
+    font-weight: bold;
+    color: #374151;
+  }
+
+  .player-stats {
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .player-stats button {
+    border-radius: 30px;
+    height: 64px;
+    width: 280px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+  }
+
+  .season-opportunities {
+    margin-top: 32px;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .opportunity {
+    border-radius: 8px;
+    border: 1px solid #c3c3c3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    width: 280px;
+    height: 160px;
+  }
+
+  .opportunity-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #374151;
+  }
+
+  .opportunities-quantity {
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+  .championship-informations {
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .championship-information {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .field-title {
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+  .field-value {
+    font-size: 32px;
+    color: #374151;
+    font-weight: bold;
+  }
+
+  .match-attempts-section {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    font-size: 32px;
+  }
+
+  .match-attempt {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .attempt-name {
+    color: #374151;
+    font-weight: bold;
+  }
+
+  .attempt-quantity {
+    border: 1px solid #c3c3c3;
+    border-radius: 8px;
+    height: 40px;
+    width: 80px;
+    padding-left: 16px;
+    font-size: 24px;
+  }
+
+  .match-section {
+    margin-top: 32px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .player-team {
+    display: flex;
+    gap: 32px;
+  }
+
+  .player-team-name {
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+  .opposing-team {
+    display: flex;
+    gap: 32px;
+  }
+
+  .opposing-team-name {
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+  .team-goals {
+    border-radius: 8px;
+    border: 1px solid #3d3d3d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    width: 56px;
+  }
+
+  .versus-icon {
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+  .match-buttons-section {
+    margin-top: 32px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .match-buttons-section button {
+    border-radius: 30px;
+    width: 192px;
+    height: 64px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  button:hover {
+    opacity: 90%;
+  }
+
+  button:active {
+    opacity: 100%;
+  }
+
+  .informations-modal {
+    border-radius: 8px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .modal-name {
+    margin-left: 24px;
+    margin-top: 24px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .modal-stats {
+    margin-left: 24px;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .avarage-grade {
+    margin-left: 24px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .team-score {
+    margin-left: 24px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .confirmation {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+
+  .confirmation button {
+    border-radius: 8px;
+    background-color: #f3f4f6;
+    width: 80px;
+    height: 48px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .modal-background {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
 }
 
-.player-information {
-  justify-content: space-around;
-  display: flex;
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 768px
+*/
+@media (min-width: 481px) and (max-width: 768px) {
+  .game {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .player-information-section {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .player-information {
+    justify-content: space-around;
+    display: flex;
+  }
+
+  .season-information {
+    justify-content: space-around;
+    display: flex;
+    align-items: center;
+  }
+
+  .player-information {
+    font-size: 40px;
+    font-weight: bold;
+  }
+
+  .season-information {
+    font-size: 32px;
+    font-weight: bold;
+    color: #374151;
+    text-align: center;
+  }
+
+  .player-stats {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .player-stats button {
+    border-radius: 30px;
+    height: 64px;
+    width: 280px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+  }
+
+  .season-opportunities {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .opportunity {
+    border-radius: 8px;
+    border: 1px solid #c3c3c3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    width: 280px;
+    height: 160px;
+  }
+
+  .opportunity-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #374151;
+  }
+
+  .opportunities-quantity {
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+  .championship-informations {
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .championship-information {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .field-title {
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+  .field-value {
+    font-size: 32px;
+    color: #374151;
+    font-weight: bold;
+  }
+
+  .match-attempts-section {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    font-size: 32px;
+  }
+
+  .match-attempt {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .attempt-name {
+    color: #374151;
+    font-weight: bold;
+  }
+
+  .attempt-quantity {
+    border: 1px solid #c3c3c3;
+    border-radius: 8px;
+    height: 40px;
+    width: 80px;
+    padding-left: 16px;
+    font-size: 24px;
+  }
+
+  .match-section {
+    margin-top: 32px;
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .player-team {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .player-team-name {
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+  .opposing-team {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .opposing-team-name {
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+  .team-goals {
+    border-radius: 8px;
+    border: 1px solid #3d3d3d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    width: 56px;
+  }
+
+  .versus-icon {
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+  .match-buttons-section {
+    margin-top: 32px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .match-buttons-section button {
+    border-radius: 30px;
+    width: 192px;
+    height: 64px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  button:hover {
+    opacity: 90%;
+  }
+
+  button:active {
+    opacity: 100%;
+  }
+
+  .informations-modal {
+    border-radius: 8px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .modal-name {
+    margin-left: 24px;
+    margin-top: 24px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .modal-stats {
+    margin-left: 24px;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .avarage-grade {
+    margin-left: 24px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .team-score {
+    margin-left: 24px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .confirmation {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+
+  .confirmation button {
+    border-radius: 8px;
+    background-color: #f3f4f6;
+    width: 80px;
+    height: 48px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .modal-background {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
 }
 
-.season-information {
-  justify-content: space-around;
-  display: flex;
-}
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+@media (min-width: 320px) and (max-width: 480px) {
+  .game {
+    display: flex;
+    flex-direction: column;
+  }
 
-.player-information {
-  font-size: 40px;
-  font-weight: bold;
-}
+  .player-information-section {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
 
-.season-information {
-  font-size: 32px;
-  font-weight: bold;
-  color: #374151;
-}
+  .player-information {
+    display: flex;
+    justify-content: space-around;
+  }
 
-.player-stats {
-  margin-top: 24px;
-  display: flex;
-  justify-content: space-around;
-}
+  .season-information {
+    justify-content: space-around;
+    display: flex;
+    align-items: center;
+  }
 
-.player-stats button {
-  border-radius: 30px;
-  height: 64px;
-  width: 280px;
-  font-size: 20px;
-  color: white;
-  cursor: pointer;
-}
+  .player-information {
+    font-size: 24px;
+    font-weight: bold;
+  }
 
-.season-opportunities {
-  margin-top: 32px;
-  display: flex;
-  justify-content: space-around;
-}
+  .season-information {
+    font-size: 24px;
+    font-weight: bold;
+    color: #374151;
+    text-align: center;
+  }
 
-.opportunity {
-  border-radius: 8px;
-  border: 1px solid #c3c3c3;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-  width: 280px;
-  height: 160px;
-}
+  .player-stats {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  }
 
-.opportunity-title {
-  font-size: 24px;
-  font-weight: bold;
-  color: #374151;
-}
+  .player-stats button {
+    border-radius: 30px;
+    height: 48px;
+    width: 240px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+  }
 
-.opportunities-quantity {
-  font-size: 32px;
-  font-weight: bold;
-}
+  .season-opportunities {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  }
 
-.championship-informations {
-  margin-top: 32px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 16px;
-}
+  .opportunity {
+    border-radius: 8px;
+    border: 1px solid #c3c3c3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    width: 200px;
+    height: 120px;
+  }
 
-.championship-information {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 16px;
-}
+  .opportunity-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #374151;
+  }
 
-.field-title {
-  font-size: 32px;
-  font-weight: bold;
-}
+  .opportunities-quantity {
+    font-size: 24px;
+    font-weight: bold;
+  }
 
-.field-value {
-  font-size: 32px;
-  color: #374151;
-  font-weight: bold;
-}
+  .championship-informations {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 8px;
+  }
 
-.match-attempts-section {
-  margin-top: 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  font-size: 32px;
-}
+  .championship-information {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+  }
 
-.match-attempt {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-}
+  .field-title {
+    font-size: 24px;
+    font-weight: bold;
+  }
 
-.attempt-name {
-  color: #374151;
-  font-weight: bold;
-}
+  .field-value {
+    font-size: 24px;
+    color: #374151;
+    font-weight: bold;
+  }
 
-.attempt-quantity {
-  border: 1px solid #c3c3c3;
-  border-radius: 8px;
-  height: 40px;
-  width: 80px;
-  padding-left: 16px;
-  font-size: 24px;
-}
+  .match-attempts-section {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 24px;
+  }
 
-.match-section {
-  margin-top: 32px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
+  .match-attempt {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+  }
 
-.player-team {
-  display: flex;
-  gap: 32px;
-}
+  .attempt-name {
+    color: #374151;
+    font-weight: bold;
+  }
 
-.player-team-name {
-  font-size: 32px;
-  font-weight: bold;
-}
+  .attempt-quantity {
+    border: 1px solid #c3c3c3;
+    border-radius: 8px;
+    height: 40px;
+    width: 80px;
+    text-align: center;
+    font-size: 24px;
+  }
 
-.opposing-team {
-  display: flex;
-  gap: 32px;
-}
+  .match-section {
+    margin-top: 32px;
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+    align-items: center;
+  }
 
-.opposing-team-name {
-  font-size: 32px;
-  font-weight: bold;
-}
+  .player-team {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+  }
 
-.team-goals {
-  border-radius: 8px;
-  border: 1px solid #3d3d3d;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  font-weight: bold;
-  width: 56px;
-}
+  .player-team-name {
+    font-size: 24px;
+    font-weight: bold;
+  }
 
-.versus-icon {
-  font-size: 32px;
-  font-weight: bold;
-}
+  .opposing-team {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+  }
 
-.match-buttons-section {
-  margin-top: 32px;
-  margin-bottom: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-}
+  .opposing-team-name {
+    font-size: 24px;
+    font-weight: bold;
+  }
 
-.match-buttons-section button {
-  border-radius: 30px;
-  width: 192px;
-  height: 64px;
-  color: white;
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
-}
+  .team-goals {
+    border-radius: 8px;
+    border: 1px solid #3d3d3d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    height: 40px;
+    width: 56px;
+  }
 
-button:hover {
-  opacity: 90%;
-}
+  .versus-icon {
+    font-size: 24px;
+    font-weight: bold;
+  }
 
-button:active {
-  opacity: 100%;
-}
+  .match-buttons-section {
+    margin-top: 32px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  }
 
-.informations-modal {
-  border-radius: 8px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  width: 360px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
+  .match-buttons-section button {
+    border-radius: 30px;
+    width: 192px;
+    height: 48px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
 
-.modal-name {
-  margin-left: 24px;
-  margin-top: 24px;
-  font-size: 24px;
-  font-weight: bold;
-}
+  button:hover {
+    opacity: 90%;
+  }
 
-.modal-stats {
-  margin-left: 24px;
-  font-size: 20px;
-  font-weight: bold;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 8px;
-}
+  button:active {
+    opacity: 100%;
+  }
 
-.avarage-grade {
-  margin-left: 24px;
-  font-size: 20px;
-  font-weight: bold;
-}
+  .informations-modal {
+    border-radius: 8px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
 
-.team-score {
-  margin-left: 24px;
-  font-size: 20px;
-  font-weight: bold;
-}
+  .modal-name {
+    margin-left: 24px;
+    margin-top: 24px;
+    font-size: 24px;
+    font-weight: bold;
+  }
 
-.confirmation {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 24px;
-}
+  .modal-stats {
+    margin-left: 24px;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+  }
 
-.confirmation button {
-  border-radius: 8px;
-  background-color: #f3f4f6;
-  width: 80px;
-  height: 48px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-}
+  .avarage-grade {
+    margin-left: 24px;
+    font-size: 20px;
+    font-weight: bold;
+  }
 
-.modal-background {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgb(0, 0, 0, 0.1);
-  z-index: 1000;
+  .team-score {
+    margin-left: 24px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .confirmation {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+
+  .confirmation button {
+    border-radius: 8px;
+    background-color: #f3f4f6;
+    width: 80px;
+    height: 48px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .modal-background {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
 }

@@ -27,7 +27,7 @@ export const Classification = () => {
 
   const navigate = useNavigate();
 
-  const [playerData, setPlayerData] = useState<{
+  const [playerData] = useState<{
     name: string;
     age: number;
     team: string;
@@ -50,7 +50,7 @@ export const Classification = () => {
     showSeasonStats: false,
     showCareerStats: false,
   });
-  const [championshipData, setChampionshipData] = useState<{
+  const [championshipData] = useState<{
     championshipName: string;
     playerTeam: {
       teamName: string;

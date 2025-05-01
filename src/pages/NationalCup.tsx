@@ -62,7 +62,7 @@ export const NationalCup = () => {
     lastSeasonGrade: number;
     gradesOnSeason: Array<number>;
   }>(JSON.parse(playerDataStorage));
-  const [championshipData, setChampionshipData] = useState<{
+  const [championshipData] = useState<{
     championshipName: string;
     playerTeam: {
       teamName: string;

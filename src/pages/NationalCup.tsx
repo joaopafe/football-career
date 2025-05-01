@@ -5,6 +5,7 @@ import { nationalCups } from "../../data/nationalCups/nationalCups";
 
 import { Championship } from "../../gameLogics/Championship";
 import { Match } from "../../gameLogics/Match";
+import { Player } from "../../gameLogics/Player";
 
 import { PlayerInformation } from "../components/game/PlayerInformations";
 import { SeasonInformation } from "../components/game/SeasonInformation";
@@ -38,6 +39,7 @@ export const NationalCup = () => {
 
   const championship = new Championship();
   const match = new Match();
+  const player = new Player();
 
   const navigate = useNavigate();
 
@@ -140,6 +142,7 @@ export const NationalCup = () => {
     opposingTeamGoals: 0,
   });
   const [placementLastSeason, setPlacementLastSeason] = useState(20);
+  const [playerIsInjured, setPlayerIsInjured] = useState(false);
 
   useEffect(() => {
     setPlayerSeasonOpportunities(JSON.parse(playerSeasonOpportunitiesStorage));
@@ -261,58 +264,86 @@ export const NationalCup = () => {
   };
 
   const getPlayerAttempts = () => {
-    const disarmingAttemptsElement: HTMLInputElement | null =
-      document.querySelector("#disarming-attempts");
+    if (!playerIsInjured) {
+      const disarmingAttemptsElement: HTMLInputElement | null =
+        document.querySelector("#disarming-attempts");
 
-    const passAttemptsElement: HTMLInputElement | null =
-      document.querySelector("#pass-attempts");
+      const passAttemptsElement: HTMLInputElement | null =
+        document.querySelector("#pass-attempts");
 
-    const finishingAttemptsElement: HTMLInputElement | null =
-      document.querySelector("#finishing-attempts");
+      const finishingAttemptsElement: HTMLInputElement | null =
+        document.querySelector("#finishing-attempts");
 
-    let disarmingAttempts = 0;
-    let passAttempts = 0;
-    let finishingAttempts = 0;
+      let disarmingAttempts = 0;
+      let passAttempts = 0;
+      let finishingAttempts = 0;
 
-    if (
-      disarmingAttemptsElement != null &&
-      passAttemptsElement != null &&
-      finishingAttemptsElement != null
-    ) {
-      disarmingAttempts = parseInt(disarmingAttemptsElement.value);
-      passAttempts = parseInt(passAttemptsElement.value);
-      finishingAttempts = parseInt(finishingAttemptsElement.value);
+      if (
+        disarmingAttemptsElement != null &&
+        passAttemptsElement != null &&
+        finishingAttemptsElement != null
+      ) {
+        if (disarmingAttemptsElement.value !== "")
+          disarmingAttempts = parseInt(disarmingAttemptsElement.value);
+        if (passAttemptsElement.value !== "")
+          passAttempts = passAttempts = parseInt(passAttemptsElement.value);
+        if (finishingAttemptsElement.value !== "")
+          finishingAttempts = parseInt(finishingAttemptsElement.value);
+
+        if (disarmingAttemptsElement.value === "") disarmingAttempts = 0;
+        if (passAttemptsElement.value === "") passAttempts = 0;
+        if (finishingAttemptsElement.value === "") finishingAttempts = 0;
+      }
+
+      const fixedAttempts = validatePlayerAttempts(
+        disarmingAttempts,
+        passAttempts,
+        finishingAttempts
+      );
+
+      disarmingAttempts = fixedAttempts.disarmingAttemptsFixed;
+      passAttempts = fixedAttempts.passAttemptsFixed;
+      finishingAttempts = fixedAttempts.finishingAttemptsFixed;
+
+      return {
+        disarmingAttempts,
+        passAttempts,
+        finishingAttempts,
+      };
     }
 
-    const fixedAttempts = validatePlayerAttempts(
-      disarmingAttempts,
-      passAttempts,
-      finishingAttempts
-    );
-
-    disarmingAttempts = fixedAttempts.disarmingAttemptsFixed;
-    passAttempts = fixedAttempts.passAttemptsFixed;
-    finishingAttempts = fixedAttempts.finishingAttemptsFixed;
-
     return {
-      disarmingAttempts,
-      passAttempts,
-      finishingAttempts,
+      disarmingAttempts: 0,
+      passAttempts: 0,
+      finishingAttempts: 0,
     };
   };
 
   const getPlayerPerformance = () => {
-    const playerAttempts = getPlayerAttempts();
+    if (!playerIsInjured) {
+      const playerAttempts = getPlayerAttempts();
 
-    const playerPerfomance = match.getPlayerPerformance(
-      playerAttempts.disarmingAttempts,
-      playerAttempts.passAttempts,
-      playerAttempts.finishingAttempts,
-      playerData.overall,
-      playerData.position
-    );
+      const playerPerfomance = match.getPlayerPerformance(
+        playerAttempts.disarmingAttempts,
+        playerAttempts.passAttempts,
+        playerAttempts.finishingAttempts,
+        playerData.overall,
+        playerData.position
+      );
+      return playerPerfomance;
+    }
 
-    return playerPerfomance;
+    return {
+      successfulDisarms: 0,
+      successfulPass: 0,
+      successfulFinishing: 0,
+      successfulAssists: 0,
+      successfulGoals: 0,
+      unsuccessfulDisarms: 0,
+      unsuccessfulPass: 0,
+      unsuccessfulFinishing: 0,
+      matchGrade: 6,
+    };
   };
 
   const getGoalsOfTheMatch = () => {
@@ -392,17 +423,33 @@ export const NationalCup = () => {
 
       const playerAttempts = getPlayerAttempts();
 
-      setPlayerSeasonOpportunities({
-        disarmingOpportunities:
-          playerSeasonOpportunities.disarmingOpportunities -
-          playerAttempts.disarmingAttempts,
-        passOpportunities:
-          playerSeasonOpportunities.passOpportunities -
-          playerAttempts.passAttempts,
-        finishingOpportunities:
-          playerSeasonOpportunities.finishingOpportunities -
-          playerAttempts.finishingAttempts,
-      });
+      if (!playerIsInjured) {
+        setPlayerSeasonOpportunities({
+          disarmingOpportunities:
+            playerSeasonOpportunities.disarmingOpportunities -
+            playerAttempts.disarmingAttempts,
+          passOpportunities:
+            playerSeasonOpportunities.passOpportunities -
+            playerAttempts.passAttempts,
+          finishingOpportunities:
+            playerSeasonOpportunities.finishingOpportunities -
+            playerAttempts.finishingAttempts,
+        });
+      }
+
+      if (playerIsInjured) {
+        setPlayerSeasonOpportunities({
+          disarmingOpportunities:
+            playerSeasonOpportunities.disarmingOpportunities -
+            Math.floor(playerSeasonOpportunities.disarmingOpportunities * 0.05),
+          passOpportunities:
+            playerSeasonOpportunities.passOpportunities -
+            Math.floor(playerSeasonOpportunities.passOpportunities * 0.05),
+          finishingOpportunities:
+            playerSeasonOpportunities.finishingOpportunities -
+            Math.floor(playerSeasonOpportunities.finishingOpportunities * 0.05),
+        });
+      }
 
       setMatchWasPlayed(true);
 
@@ -631,12 +678,34 @@ export const NationalCup = () => {
       });
 
       setMatchWasPlayed(false);
+
+      const playerIsInjured = getIfPlayerIsInjured();
+
+      if (playerIsInjured) {
+        window.alert(
+          "Você sofreu uma pequena lesão muscular para a próxima partida e não poderá jogar"
+        );
+
+        setPlayerIsInjured(playerIsInjured);
+      }
+
+      if (!playerIsInjured) {
+        setPlayerIsInjured(playerIsInjured);
+      }
     }
     if (matchWasPlayed === false) {
       window.alert(
         "A partida ainda não foi jogada. Clique em 'Confirmar partida' para prosseguir"
       );
     }
+  };
+
+  const getIfPlayerIsInjured = () => {
+    const injuryProbability = player.getInjuryProbability(playerData.age);
+
+    const playerIsInjured = player.getIfPlayerIsInjured(injuryProbability);
+
+    return playerIsInjured;
   };
 
   return (

@@ -420,7 +420,7 @@ export const Game = () => {
   };
 
   const updateMatch = () => {
-    if (round < 38) {
+    if (round < championshipData.seasonMatches.length) {
       if (matchWasPlayed === true) {
         setRound(round + 1);
 
@@ -452,7 +452,7 @@ export const Game = () => {
       }
     }
 
-    if (round === 38) {
+    if (round === championshipData.seasonMatches.length) {
       localStorage.setItem(
         "playerSeasonOpportunities",
         JSON.stringify(playerSeasonOpportunities)

@@ -108,7 +108,7 @@ export const Classification = () => {
       window.alert("Parabéns! Seu time foi campeão!");
     }
 
-    if (playerTeamPlacing.placing > 1 && playerTeamPlacing.placing < 7) {
+    if (playerTeamPlacing.placing >= 1 && playerTeamPlacing.placing <= 6) {
       window.alert(
         "Parabéns! Seu está classificado para jogar a copa continental da próxima temporada!"
       );

@@ -465,6 +465,8 @@ export const NationalCup = () => {
   };
 
   const redirectScreen = () => {
+    console.log("Colocação:", placementLastSeason);
+
     if (placementLastSeason <= 6) {
       navigate("/continental-cup");
     }
@@ -630,9 +632,10 @@ export const NationalCup = () => {
     if (roundMatch === 9) {
       if (playerTeamWon) {
         window.alert(
-          `Parabéns, o seu time foi campeão da ${nationalCup.nationalCupName}, vencendo por ${roundGoals.playerTeamGoals} a ${roundGoals.opposingTeamGoals} no placar agregado`
+          `Parabéns, o seu time foi campeão da ${nationalCup.nationalCupName}, vencendo por ${roundGoals.playerTeamGoals} a ${roundGoals.opposingTeamGoals} no placar agregado e poderá jogar a copa continental!`
         );
-        redirectScreen();
+
+        navigate("/continental-cup");
       }
 
       if (playerTeamTied) {
@@ -641,9 +644,10 @@ export const NationalCup = () => {
           resultOfPenalties.opposingTeamGoals
         ) {
           window.alert(
-            `Parabéns, o seu time foi campeão da ${nationalCup.nationalCupName}, vencendo por ${resultOfPenalties.playerTeamGoals} a ${resultOfPenalties.opposingTeamGoals} nos pênaltis`
+            `Parabéns, o seu time foi campeão da ${nationalCup.nationalCupName}, vencendo por ${resultOfPenalties.playerTeamGoals} a ${resultOfPenalties.opposingTeamGoals} nos pênaltis e poderá jogar a copa continental!`
           );
-          redirectScreen();
+
+          navigate("/continental-cup");
         }
 
         if (
